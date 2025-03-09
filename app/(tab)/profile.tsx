@@ -1,11 +1,16 @@
-import {View, Text } from "react-native";
+import {View, Text, SafeAreaView, ScrollView } from "react-native";
 import React from "react";
+import Profile from "@/components/Profile";
+import styleProfile from "@/styles/profile.styles";
 
 const profile = () => {
     return (
-        <View>
-            <Text>profile</Text>
-        </View>
+        <SafeAreaView style={styleProfile.container}>
+            <ScrollView>
+                <Profile />
+            </ScrollView>
+
+        </SafeAreaView>
     )
 }
 
