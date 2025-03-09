@@ -8,10 +8,12 @@ import { Link, router } from "expo-router";
 
 const { height } = Dimensions.get("window"); 
 
-const reset = () => {
+const resetPassword = () => {
     const [form, setForm] = useState({
+        fullName: "",
         email: "",
-        password: ""
+        password: "",
+        confirmPassword: ""
     })
 
     const [isLoading, setIsLoading] = useState(false)
@@ -24,33 +26,40 @@ const reset = () => {
                 source={logo}
                 style={styleAuth.img}
                 resizeMode="contain"/>
-                <Text style={styleAuth.h3}>Reset Password</Text>
+                <Text style={styleAuth.h3}>Enter new Password</Text>
+                
+                
+               
+                
                 <FormField 
-                title="Email*" 
-                value={form.email}
+                title="Password*" 
+                value={form.password}
                 handleChange={(e: any) => 
                     setForm({
-                        ...form, email: e,
+                        ...form, password: e,
                     })
                 }
                 otherStyles={styleAuth.input_box}
-                placeholder="Enter your email..."/>
-               
+                placeholder="Enter your password..."/>
+                <FormField 
+                title="Confirm Password*" 
+                value={form.confirmPassword}
+                handleChange={(e: any) => 
+                    setForm({
+                        ...form, confirmPassword: e,
+                    })
+                }
+                otherStyles={styleAuth.input_box}
+                placeholder="Re-enter your password..."/>
                 
-                <CustomButton title={'Send OTP'}
+                <CustomButton title={'Change Password'}
                     handlePress={() => {
-                        router.push('/confirm-otp')
+                        router.push('/signin')
                     }}
                     containerStyles={styleAuth.btn2}
                     textStyles={styleAuth.text3}
                     isLoading={isLoading}/>
-                    <View style={styleAuth.content_bottom}>
-                        <Text style={styleAuth.content_bottom_text}>
-                            Remember Password?{" "}
-                        
-                        <Link style={{color: "aqua", fontWeight: 700}} href={"/signin"}>Sign In</Link>
-                        </Text>
-                    </View>
+                    
             </View>
             </View>
 
@@ -60,4 +69,4 @@ const reset = () => {
 
 
 
-export default reset;
+export default resetPassword;

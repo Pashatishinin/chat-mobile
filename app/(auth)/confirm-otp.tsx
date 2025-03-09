@@ -8,10 +8,9 @@ import { Link, router } from "expo-router";
 
 const { height } = Dimensions.get("window"); 
 
-const reset = () => {
+const confirmOTP = () => {
     const [form, setForm] = useState({
-        email: "",
-        password: ""
+        otp: ""
     })
 
     const [isLoading, setIsLoading] = useState(false)
@@ -24,33 +23,34 @@ const reset = () => {
                 source={logo}
                 style={styleAuth.img}
                 resizeMode="contain"/>
-                <Text style={styleAuth.h3}>Reset Password</Text>
+                <Text style={styleAuth.h3}>Enter your OTP</Text>
                 <FormField 
-                title="Email*" 
-                value={form.email}
+                title="OTP*" 
+                value={form.otp}
                 handleChange={(e: any) => 
                     setForm({
-                        ...form, email: e,
+                        ...form, otp: e,
                     })
                 }
                 otherStyles={styleAuth.input_box}
-                placeholder="Enter your email..."/>
+                placeholder="Enter your OTP..."/>
                
                 
-                <CustomButton title={'Send OTP'}
+                <CustomButton title={'Verify OTP'}
                     handlePress={() => {
-                        router.push('/confirm-otp')
+                        router.push('/reset-password')
                     }}
                     containerStyles={styleAuth.btn2}
                     textStyles={styleAuth.text3}
                     isLoading={isLoading}/>
                     <View style={styleAuth.content_bottom}>
                         <Text style={styleAuth.content_bottom_text}>
-                            Remember Password?{" "}
+                            Doesn't Received OTP?{" "}
                         
-                        <Link style={{color: "aqua", fontWeight: 700}} href={"/signin"}>Sign In</Link>
+                        <Link style={{color: "aqua", fontWeight: 700}} href={"/confirm-otp"}>Resend</Link>
                         </Text>
                     </View>
+                    
             </View>
             </View>
 
@@ -60,4 +60,4 @@ const reset = () => {
 
 
 
-export default reset;
+export default confirmOTP;
