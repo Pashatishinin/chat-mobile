@@ -1,10 +1,11 @@
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import { View, Text, Image, TouchableOpacity, Alert } from "react-native";
 import React, { useState } from "react";
 import styleProfile from "@/styles/profile.styles";
 import profile from "@/assets/profile.avif"
 import CustomButton from "./CustomButton";
 import {Ionicons} from '@expo/vector-icons';
 import FormField from "./FormField";
+import * as ImagePicker from "expo-image-picker"
 
 interface ProfileProps {
     setOpenEdit: any,
@@ -22,20 +23,48 @@ const ProfileEdit = ({ setOpenEdit, openEdit} : ProfileProps) => {
         fullName: "Peter Parker",
         email: "peterparker1@gmail.com",
         username: "@peterparker1"
-    })
+    });
+
+    const [ImageSelected, setImageSelected] = 
+    useState<ImagePicker.ImagePickerAsset | null> (null)
+
+    const pickImage = async() => {
+        let permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+        if(permissionResult.granted == false) {
+            Alert.alert(
+                "Permission Denied",
+                "You need to grant permission to access your photos."
+            )
+        }
+
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ['images'],
+            allowsEditing: true,
+            aspect: [4, 4],
+            quality: 1
+        })
+
+        if(!result.canceled) {
+            setImageSelected(result.assets[0])
+        }
+    }
 
     return (
         <View style={styleProfile.container_profile}>
             <Text style={styleProfile.h1}>Edit Profile</Text>
             
             <View style={styleProfile.box_edit}>
-                <Image source={profile} style={styleProfile.img}/>
+                <Image 
+                source={ImageSelected ? {uri: ImageSelected.uri} : profile} 
+                style={styleProfile.img}/>
                 <TouchableOpacity style={styleProfile.icon}>
                     
                     <Ionicons 
                 name="camera" 
                 size={25} 
                 color={"black"}
+                onPress={pickImage}
                 />
                 </TouchableOpacity>
                 
