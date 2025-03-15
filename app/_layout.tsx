@@ -6,6 +6,7 @@ const RootLayout = () => {
     return (
        <Stack>
             <Stack.Screen name="index" options={{headerShown: false}}/>
+            <Stack.Screen name="home" options={{headerShown: false}}/>
             <Stack.Screen name="(auth)" options={{headerShown: false}}/>
             <Stack.Screen name="(tab)" options={{headerShown: false}}/>
             <Stack.Screen name="(add-friends)" options={{headerShown: false}}/>

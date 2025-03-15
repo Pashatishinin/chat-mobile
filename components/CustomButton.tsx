@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     btn: {
         justifyContent: "center",
         alignItems: "center",
-        borderRadius: 5
+        borderRadius: 20
     },
     hover: {
         opacity: 50

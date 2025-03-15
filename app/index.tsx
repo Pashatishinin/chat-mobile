@@ -1,18 +1,47 @@
 import { Text, View, StyleSheet, SafeAreaView, ScrollView, Image } from "react-native";
-import React from "react";
-import { Link, router } from "expo-router";
-import logo from "@/assets/logo.png"
-import CustomButton from "@/components/CustomButton";
+import React, { useEffect } from "react";
+import { Link, router, useRouter } from "expo-router";
+import logo from "@/assets/logo2.png"
 
 const index = () => {
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      router.replace("/home"); // Переход на "Home"
+    }, 3000); // 3 секунды
+
+    return () => clearTimeout(timer); // Очистка таймера при размонтировании
+  }, []);
+
+
+
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={{
+            backgroundColor: "#181818"
+        }}>
             <ScrollView contentContainerStyle={{ height: "100%"}}>
-                <View style={styles.box}>
-                    <Image source={logo} style={styles.img1}/>
-                    <Text style={styles.text1}>Connet, Chat, Share Instantly with</Text>
-                    <Text style={styles.text2}>CHAT</Text>
-                    <CustomButton title={'Sign In'}
+                <View style={{
+                    width: "100%",
+                    flex: 1,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    height: "100%",
+                    paddingHorizontal: 22,
+                    gap:20,
+                    
+                            }}>
+                    <Image source={logo} style={{
+                        width: 130,
+                        height: 130,    
+                    }}/>
+                    <Text style={{
+                        fontSize: 32,
+                        fontWeight: 700,
+                        color: "white",
+                        textAlign: "center"
+                    }}>Lastivka</Text>
+                    {/* <Text style={styles.text2}>CHAT</Text> */}
+                    {/* <CustomButton title={'Sign In'}
                     handlePress={() => {
                         router.push('/signin')
                     }}
@@ -25,7 +54,7 @@ const index = () => {
                     }}
                     containerStyles={styles.btn3}
                     textStyles={styles.text3}
-                    isLoading={false}/>
+                    isLoading={false}/> */}
                 </View>
             </ScrollView>
         </SafeAreaView>

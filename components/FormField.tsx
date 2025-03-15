@@ -1,6 +1,8 @@
 import { View, Text, StyleSheet, TextInput, StyleProp, ViewStyle, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 
+
+
 import {Ionicons} from '@expo/vector-icons';
 
 interface FormFieldProps {
@@ -8,19 +10,22 @@ interface FormFieldProps {
     value: string,
     handleChange: (text:string) => void;
     otherStyles ?: StyleProp<ViewStyle>;
-    placeholder: string
+    placeholder: string,
+    icon: keyof typeof Ionicons.glyphMap;
+    icon_color: string
 
 }
 
-const FormField = ({title, value, otherStyles, handleChange, placeholder}: FormFieldProps) => {
+const FormField = ({title, value, otherStyles, handleChange, placeholder, icon, icon_color}: FormFieldProps) => {
 
     const [showPassword, setShowPassword] = useState(false)
     const isPasswordField = title.toLocaleLowerCase().includes("password")
 
     return (
-        <View style={[styles.container, otherStyles]}>
+        <View style={styles.container}>
             <Text style={styles.text1}>{title}</Text>
-            <View style={styles.inpt_box}>
+            <View style={[styles.inpt_box, otherStyles, {gap:10}]}>
+                <Ionicons name={icon} size={24} color={icon_color}/>
                 <TextInput 
                 style={styles.txt_inpt}
                 value={value}
@@ -50,15 +55,14 @@ const styles = StyleSheet.create({
    text1:{
     fontSize: 16,
     color: "white",
-    fontWeight: 600
+    fontWeight: 400
    },
    inpt_box: {
     width: "100%",
     height: 56,
     paddingHorizontal: 16,
-    backgroundColor: "black",
-    borderColor: "gray",
-    borderRadius: 10,
+    borderWidth: 1,
+    borderRadius: 20,
     alignItems: "center",
     justifyContent: "center",
     display: "flex",
