@@ -1,9 +1,12 @@
 import { View, Text, Image } from "react-native";
 import React from "react";
 import styleProfile from "@/styles/profile.styles";
-import profile from "@/assets/profile.avif"
+
 import CustomButton from "./CustomButton";
 import { router } from "expo-router";
+
+
+const profile = require("@/assets/avatar.jpg");
 
 interface ProfileProps {
     setOpenEdit: any,

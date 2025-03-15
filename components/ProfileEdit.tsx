@@ -1,11 +1,14 @@
 import { View, Text, Image, TouchableOpacity, Alert } from "react-native";
 import React, { useState } from "react";
 import styleProfile from "@/styles/profile.styles";
-import profile from "@/assets/profile.avif"
+
 import CustomButton from "./CustomButton";
 import {Ionicons} from '@expo/vector-icons';
 import FormField from "./FormField";
 import * as ImagePicker from "expo-image-picker"
+
+
+const profile = require("@/assets/avatar.jpg");
 
 interface ProfileProps {
     setOpenEdit: any,

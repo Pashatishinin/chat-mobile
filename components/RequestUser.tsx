@@ -1,8 +1,10 @@
 import { View, Text, Image } from "react-native";
 import React from "react";
 import styleRequest from "@/styles/request.styles";
-import profile from "@/assets/profile.avif"
+
 import CustomButton from "./CustomButton";
+
+const profile = require("@/assets/avatar.jpg");
 
 const RequestUser = () => {
     return (
