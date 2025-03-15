@@ -32,11 +32,18 @@
   {
     "id": 7,
     "isSendByMe": false,
-    "message": "Yes, I'll be there at 10 AM."
+    "message": "Yes, I'll be there at 10 AM.",
+    "mediaURL": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLD_4FIrezcWj9iafrR3dra9AMigbw3tHAZzjW5Ia8NCrfeEXEa2zqRONHkMJ5IjHumjU&usqp=CAU"
   },
   {
     "id": 8,
     "isSendByMe": true,
     "message": "Are we still meeting tomorrow?"
+  },
+  {
+    "id": 9,
+    "isSendByMe": true,
+    "message": "",
+    "mediaURL": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLD_4FIrezcWj9iafrR3dra9AMigbw3tHAZzjW5Ia8NCrfeEXEa2zqRONHkMJ5IjHumjU&usqp=CAU"
   }
 ]
