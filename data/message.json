@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "isSendByMe": true,
+    "message": "Hey, how are you?"
+  },
+  {
+    "id": 2,
+    "isSendByMe": false,
+    "message": "I'm good, how about you?"
+  },
+  {
+    "id": 3,
+    "isSendByMe": true,
+    "message": "I'm doing well, thanks!"
+  },
+  {
+    "id": 4,
+    "isSendByMe": false,
+    "message": "Great to hear!"
+  },
+  {
+    "id": 5,
+    "isSendByMe": true,
+    "message": "Are we still meeting tomorrow?"
+  },
+  {
+    "id": 6,
+    "isSendByMe": false,
+    "message": "Yes, I'll be there at 10 AM."
+  },
+  {
+    "id": 7,
+    "isSendByMe": false,
+    "message": "Yes, I'll be there at 10 AM."
+  },
+  {
+    "id": 8,
+    "isSendByMe": true,
+    "message": "Are we still meeting tomorrow?"
+  }
+]

@@ -2,6 +2,7 @@ import {StyleSheet, View, Text } from "react-native";
 import React from "react";
 import { Tabs } from "expo-router";
 import {Ionicons} from '@expo/vector-icons';
+import { StatusBar } from "react-native";
 
 interface TabBarProps {
     icon: any;
@@ -56,6 +57,7 @@ const TabLayout = () => {
                     <TabIcon name={"Profile"} icon={"person"} focused={focused} />
             }}/>
         </Tabs>
+        <StatusBar barStyle={"light-content"}/>
         </>
     )
 }

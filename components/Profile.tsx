@@ -5,8 +5,8 @@ import styleProfile from "@/styles/profile.styles";
 import CustomButton from "./CustomButton";
 import { router } from "expo-router";
 
-
 const profile = require("@/assets/avatar.jpg");
+
 
 interface ProfileProps {
     setOpenEdit: any,

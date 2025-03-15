@@ -9,7 +9,7 @@ const AddFriendsLayout = () => {
             <Stack.Screen name="add-friends" options={{headerShown: false}}/>
             
         </Stack>
-        <StatusBar backgroundColor={'#161622'}/>
+        <StatusBar barStyle={"light-content"}/>
         </>
         
     )
