@@ -1,6 +1,5 @@
 import {
   View,
-  Text,
   Image,
   TouchableOpacity,
   Alert,
@@ -19,11 +18,7 @@ import { router } from "expo-router";
 const profile = require("@/assets/avatar.jpg");
 const { height } = Dimensions.get("window");
 
-
-
 const ProfileEdit = () => {
-  
-
   const [isInputActiveName, setIsInputActiveName] = useState(false);
   const [isInputActiveEmail, setIsInputActiveEmail] = useState(false);
 
