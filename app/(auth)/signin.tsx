@@ -139,23 +139,18 @@ const signin = () => {
               router.push("/settings");
             }}
             containerStyles={{
-              paddingHorizontal: 8,
-              paddingVertical: 12,
+              paddingHorizontal: 20,
+              paddingVertical: 20,
+              marginTop: 20,
               backgroundColor:
                 isInputActivePassword && isInputActiveEmail
                   ? "#57B77D"
                   : "#ABDBBE",
               width: "100%",
-              marginTop: 28,
             }}
             textStyles={{
-              fontSize: 20,
               color: "white",
-              fontWeight: 900,
-              letterSpacing: 3,
-              textTransform: "uppercase",
-              width: "100%",
-              textAlign: "center",
+              fontWeight: 700,
             }}
             isLoading={isLoading}
           />

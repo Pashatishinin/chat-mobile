@@ -57,7 +57,7 @@ const settings = () => {
               </Text>
               <TouchableOpacity 
               onPress={() => {
-                  router.push("/profile");
+                  router.push("/profile-edit");
                 }}>
                 <Ionicons name="create-outline" color={"#57B77D"} size={17} />
               </TouchableOpacity>

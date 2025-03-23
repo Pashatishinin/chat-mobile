@@ -80,7 +80,7 @@ const signup = () => {
               handleChange={(e: any) => {
                 setForm({
                   ...form,
-                  password: e,
+                  fullName: e,
                 });
                 setIsInputActiveName(e.length > 0);
               }}
@@ -96,7 +96,7 @@ const signup = () => {
               handleChange={(e: any) => {
                 setForm({
                   ...form,
-                  password: e,
+                  email: e,
                 });
                 setIsInputActiveEmail(e.length > 0);
               }}
@@ -146,8 +146,10 @@ const signup = () => {
               router.push("/signin");
             }}
             containerStyles={{
-              paddingHorizontal: 8,
-              paddingVertical: 12,
+              paddingHorizontal: 20,
+              paddingVertical: 20,
+              marginTop: 20,
+
               backgroundColor:
                 isInputActiveName &&
                 isInputActiveEmail &&
@@ -156,16 +158,10 @@ const signup = () => {
                   ? "#57B77D"
                   : "#ABDBBE",
               width: "100%",
-              marginTop: 28,
             }}
             textStyles={{
-              fontSize: 20,
               color: "white",
-              fontWeight: 900,
-              letterSpacing: 3,
-              textTransform: "uppercase",
-              width: "100%",
-              textAlign: "center",
+              fontWeight: 700,
             }}
             isLoading={isLoading}
           />

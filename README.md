@@ -83,7 +83,7 @@ ___
 │   │   └── 
 │   ├── (profile-settings)/
 │   │   ├── _layout.tsx
-│   │   ├── profile.tsx
+│   │   ├── profile-edit.tsx      ✅ Profile edit page
 │   ├── _layout.tsx       
 │   ├── home.tsx               ✅ First page after Splash screen
 │   └── index.tsx              ✅ Splash screen
