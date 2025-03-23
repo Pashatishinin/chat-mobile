@@ -90,13 +90,13 @@ ___
 │  
 ├── components/
 │   ├── components/
-│   │   ├── LogOut.tsx                  - NEED CORRECT 
-│   │   ├── NavigateButton.tsx          - NEED CORRECT 
-│   │   └── SettingSwitcher.tsx         - NEED CORRECT 
+│   │   ├── LogOut.tsx                  🛠️ NEED CORRECT 
+│   │   ├── NavigateButton.tsx          🛠️ NEED CORRECT 
+│   │   └── SettingSwitcher.tsx         🛠️ NEED CORRECT 
 │   │
-│   ├── HomeBotton.tsx         > + Bottom part for home page
-│   ├── CustomButton.tsx       > - NEED CORRECT 
-│   ├── FormField.tsx          - NEED CORRECT 
+│   ├── HomeBotton.tsx         ✅ Bottom part for home page
+│   ├── CustomButton.tsx       🛠️ NEED CORRECT 
+│   ├── FormField.tsx          🛠️ NEED CORRECT 
 │ 
 ├── .gitignore
 ├── app.json
@@ -105,5 +105,4 @@ ___
 ├── package.json                # Dependencies of main project
 └── tsconfig.json
 
-✅ Добавленный файл: home.tsx
-❌ Удалённый файл: old-home.tsx
+
