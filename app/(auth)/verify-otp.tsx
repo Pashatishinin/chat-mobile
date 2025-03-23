@@ -9,16 +9,23 @@ import {
 import React, { useState } from "react";
 import { router } from "expo-router";
 import CustomButton from "@/components/CustomButton";
-import FormField from "@/components/FormField";
+import { OtpInput } from "react-native-otp-entry";
 
-const fullname = () => {
+const verifyOtp = () => {
   const [form, setForm] = useState({
-    fullname: "",
+    code: "",
   });
 
   const [isInputActive, setIsInputActive] = useState(false);
 
   const [isLoading, setIsLoading] = useState(false);
+
+  const handleOtpChange = (text: string) => {
+    setForm({ code: text });
+
+    // If 4 input are entered button is active
+    setIsInputActive(text.length === 4);
+  };
 
   return (
     <SafeAreaView
@@ -54,7 +61,7 @@ const fullname = () => {
                   fontWeight: 600,
                 }}
               >
-                What's your name?
+                Verification Code
               </Text>
 
               <Text
@@ -64,32 +71,33 @@ const fullname = () => {
                   fontWeight: 400,
                 }}
               >
-                Write your name. You can change it back in settings
+                Enter the code number we sent to your email
               </Text>
             </View>
 
             <View
               style={{
                 marginTop: 40,
-                marginHorizontal: 22,
+                marginLeft: 22,
+                marginRight: 80,
               }}
             >
-              <FormField
-                icon_color={isInputActive ? "#57B77D" : "#6E8597"}
-                title="Name"
-                icon="person"
-                value={form.fullname}
-                handleChange={(e: any) => {
-                  setForm({
-                    ...form,
-                    fullname: e,
-                  });
-                  setIsInputActive(e.length > 0);
+              <OtpInput
+                numberOfDigits={4}
+                onTextChange={handleOtpChange}
+                focusColor={"#57B77D"}
+                focusStickBlinkingDuration={400}
+                theme={{
+                  pinCodeContainerStyle: {
+                    width: 60,
+                    height: 60,
+                    borderRadius: 20,
+                  },
+                  pinCodeTextStyle: {
+                    color: "#ffffff",
+                    fontSize: 24,
+                  },
                 }}
-                otherStyles={{
-                  borderColor: isInputActive ? "#57B77D" : "#6E8597",
-                }}
-                placeholder="Name"
               />
             </View>
           </View>
@@ -102,7 +110,7 @@ const fullname = () => {
             <CustomButton
               title={"Next"}
               handlePress={() => {
-                router.push("/settings");
+                router.push("/fullname");
               }}
               containerStyles={{
                 width: "100%",
@@ -125,4 +133,4 @@ const fullname = () => {
   );
 };
 
-export default fullname;
+export default verifyOtp;

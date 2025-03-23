@@ -13,7 +13,7 @@ interface TabBarProps {
 const TabIcon = ({ icon, name, focused } : TabBarProps) => {
     return (
         <View style={styles.container}>
-            <Ionicons name={icon} size={24} color={focused ? "aqua" : "gray"}/>
+            <Ionicons name={icon} size={22} color={focused ? "#57B77D" : "#6E8597"}/>
             <Text style={focused ? styles.textHover : styles.text1}>{name}</Text>
         </View>
     )
@@ -28,33 +28,33 @@ const TabLayout = () => {
             tabBarActiveTintColor: "#ffa001",
             tabBarInactiveTintColor: "#cdcde0",
             tabBarStyle: {
-                backgroundColor: "#161622",
-                borderTopWidth: 1,
-                borderTopColor: "#232533",
-                paddingTop: 10
+                backgroundColor: "#163043",
+                paddingTop: 15,
+                height: 80,
             }
             
         }}>
-            <Tabs.Screen name="chat" 
-            options={{
-                title: "Chat",
-                headerShown: false,
-                tabBarIcon: ({color, focused}) => 
-                    <TabIcon name={"Chat"} icon={"chatbubble"} focused={focused} />
-            }}/>
+            
             <Tabs.Screen name="request" 
             options={{
                 title: "Request",
                 headerShown: false,
                 tabBarIcon: ({color, focused}) => 
-                    <TabIcon name={"Request"} icon={"people"} focused={focused} />
+                    <TabIcon name={"Contacts"} icon={"people"} focused={focused} />
             }}/>
-            <Tabs.Screen name="profile" 
+            <Tabs.Screen name="chat" 
             options={{
-                title: "Profile",
+                title: "Chat",
                 headerShown: false,
                 tabBarIcon: ({color, focused}) => 
-                    <TabIcon name={"Profile"} icon={"person"} focused={focused} />
+                    <TabIcon name={"Chats"} icon={"chatbubble-ellipses"} focused={focused} />
+            }}/>
+            <Tabs.Screen name="settings" 
+            options={{
+                title: "Settings",
+                headerShown: false,
+                tabBarIcon: ({color, focused}) => 
+                    <TabIcon name={"Settings"} icon={"settings"} focused={focused} />
             }}/>
         </Tabs>
         <StatusBar barStyle={"light-content"}/>
@@ -64,7 +64,7 @@ const TabLayout = () => {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1, // Центрируем элементы по вертикали
+        flex: 1,
         alignItems: "center",
         justifyContent: "center",
         gap: 4,
@@ -73,11 +73,11 @@ const styles = StyleSheet.create({
     },
     text1: {
         fontWeight: "normal",
-        color: "gray"
+        color: "#6E8597"
     },
     textHover: {
-        color: "aqua",
-        fontWeight: "700"
+        color: "#57B77D",
+        fontWeight: "600"
     }
     
 })

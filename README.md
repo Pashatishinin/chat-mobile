@@ -52,26 +52,112 @@ Join our community of developers creating universal apps.
 
 
 
-50
-f2f5fc
-100
-e2e8f7
-200
-cbd7f2
-300
-a8bee8
-400
-7e9cdc
-500
-5f7cd2
-600
-4a60c4
-•
-700
-4150b4
-800
-3a4393
-900
-333b75
-950
-232648
+___
+
+# STRUCTURE
+
+```diff
+/
+├── .expo
+├── .vscode               
+├── app
+│   ├── (add-friends)/           
+│   │   ├── _layout.tsx
+│   │   └── 
+│   ├── (auth)/
+│   │   ├── _layout.tsx
+│   │   ├── reset-password.tsx    + Page where you can enter your new password 
+│   │   ├── fullname.tsx          + Page where user add their fullname 
+│   │   ├── add-email.tsx         + Page where user add their email for registration
+│   │   ├── signin.tsx            + Sign in page
+│   │   ├── signup.tsx            + Sign Up page
+│   │   ├── reset.tsx             + Reset Password page
+│   │   ├── confirm-otp.tsx       + Confirm OTP for Reset Password
+│   │   └── verify-otp.tsx        + Page where user should add OTP verify code 
+│   ├── (tab)/           
+│   │   ├── _layout.tsx
+│   │   ├── settings.tsx        + Settings page
+│   │   ├── 
+│   │   └── 
+│   ├── message/
+│   │   └── 
+│   ├── (profile-settings)/
+│   │   ├── _layout.tsx
+│   │   ├── profile.tsx
+│   ├── _layout.tsx       
+│   ├── home.tsx               + First page after Splash screen
+│   └── index.tsx              + Splash screen
+│  
+├── components/
+│   ├── components/
+│   │   ├── LogOut.tsx                  - NEED CORRECT 
+│   │   ├── NavigateButton.tsx          - NEED CORRECT 
+│   │   └── SettingSwitcher.tsx         - NEED CORRECT 
+│   │
+│   ├── HomeBotton.tsx         + Bottom part for home page
+│   ├── CustomButton.tsx       - NEED CORRECT 
+│   ├── FormField.tsx          - NEED CORRECT 
+│ 
+├── .gitignore
+├── app.json
+├── declaration.d.ts
+├── package-lock.json           # Dependencies of main project
+├── package.json                # Dependencies of main project
+└── tsconfig.json
+
+```markdown
+```diff
+/
+├── .expo
+├── .vscode               
+├── app
+│   ├── (add-friends)/           
+│   │   ├── _layout.tsx
+│   │   └── 
+│   ├── (auth)/
+│   │   ├── _layout.tsx
+│   │   ├── 
+│   │   ├── fullname.tsx        !!! #5 Page where user add their fullname 
+│   │   ├── add-email.tsx       !!! #3 Page where user add their email for registration
+│   │   ├── 
+│   │   ├── 
+│   │   ├── 
+│   │   ├── 
+│   │   └── verify-otp.tsx         + #4 Page where user should add OTP verify code 
+│   ├── (tab)/           
+│   │   ├── _layout.tsx
+│   │   ├── settings.tsx          !!! Sett
+│   │   ├── 
+│   │   └── 
+│   ├── message/
+│   │   └── 
+│   ├── (profile-settings)/
+│   │   ├── _layout.tsx
+│   │   ├── profile.tsx
+
+
+
+│   ├── _layout.tsx       
+│   ├── home.tsx               !!! #2 First page after Splash screen
+│   └── index.tsx              !!! #1 Splash screen
+│  
+│   
+│   
+├── components/
+│   ├── components/
+│   │   ├── LogOut.tsx                  =>  NEED CORRECT 
+│   │   ├── NavigateButton.tsx          =>  NEED CORRECT 
+│   │   └── SettingSwitcher.tsx         =>  NEED CORRECT 
+│   │
+│   ├── HomeBotton.tsx         !!! Bottom part for home page
+│   ├── CustomButton.tsx       =>  NEED CORRECT 
+│   ├── FormField.tsx          =>  NEED CORRECT 
+│ 
+├── .gitignore
+├── app.json
+├── declaration.d.ts
+├── package-lock.json           # Dependencies of main project
+├── package.json                # Dependencies of main project
+└── tsconfig.json
+
+```

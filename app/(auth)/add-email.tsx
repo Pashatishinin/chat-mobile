@@ -11,9 +11,9 @@ import { router } from "expo-router";
 import CustomButton from "@/components/CustomButton";
 import FormField from "@/components/FormField";
 
-const fullname = () => {
+const addEmail = () => {
   const [form, setForm] = useState({
-    fullname: "",
+    email: "",
   });
 
   const [isInputActive, setIsInputActive] = useState(false);
@@ -54,7 +54,7 @@ const fullname = () => {
                   fontWeight: 600,
                 }}
               >
-                What's your name?
+                What's your email address?
               </Text>
 
               <Text
@@ -64,32 +64,29 @@ const fullname = () => {
                   fontWeight: 400,
                 }}
               >
-                Write your name. You can change it back in settings
+                We will send you the verification code
               </Text>
             </View>
-
             <View
               style={{
-                marginTop: 40,
+                marginTop: 30,
                 marginHorizontal: 22,
               }}
             >
               <FormField
-                icon_color={isInputActive ? "#57B77D" : "#6E8597"}
-                title="Name"
-                icon="person"
-                value={form.fullname}
+                title="Email"
+                value={form.email}
                 handleChange={(e: any) => {
                   setForm({
                     ...form,
-                    fullname: e,
+                    email: e,
                   });
                   setIsInputActive(e.length > 0);
                 }}
                 otherStyles={{
                   borderColor: isInputActive ? "#57B77D" : "#6E8597",
                 }}
-                placeholder="Name"
+                placeholder="Enter your email..."
               />
             </View>
           </View>
@@ -102,7 +99,7 @@ const fullname = () => {
             <CustomButton
               title={"Next"}
               handlePress={() => {
-                router.push("/settings");
+                router.push("/verify-otp");
               }}
               containerStyles={{
                 width: "100%",
@@ -125,4 +122,4 @@ const fullname = () => {
   );
 };
 
-export default fullname;
+export default addEmail;
