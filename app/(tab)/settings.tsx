@@ -55,10 +55,11 @@ const settings = () => {
               >
                 Settings
               </Text>
-              <TouchableOpacity 
-              onPress={() => {
+              <TouchableOpacity
+                onPress={() => {
                   router.push("/profile-edit");
-                }}>
+                }}
+              >
                 <Ionicons name="create-outline" color={"#57B77D"} size={17} />
               </TouchableOpacity>
             </View>
@@ -114,7 +115,11 @@ const settings = () => {
                   </Text>
                 </View>
               </View>
-              <TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  router.push("/qrcode");
+                }}
+              >
                 <Ionicons name="qr-code-outline" color={"#57B77D"} size={22} />
               </TouchableOpacity>
             </View>

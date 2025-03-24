@@ -4,15 +4,14 @@ import { Stack } from "expo-router";
 
 const AuthLayout = () => {
     return (
-        <>
+      <>
         <Stack>
-            <Stack.Screen name="profile-edit" options={{headerShown: false}}/>
-
+          <Stack.Screen name="profile-edit" options={{ headerShown: false }} />
+          <Stack.Screen name="qrcode" options={{ headerShown: false }} />
         </Stack>
-        <StatusBar backgroundColor={'#161622'}/>
-        </>
-        
-    )
+        <StatusBar backgroundColor={"#161622"} />
+      </>
+    );
 }
 
 export default AuthLayout

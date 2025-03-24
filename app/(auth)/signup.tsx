@@ -4,6 +4,8 @@ import logo from "@/assets/logo2.png";
 import FormField from "@/components/FormField";
 import CustomButton from "@/components/CustomButton";
 import { Link, router } from "expo-router";
+import { myAxios } from "@/helper/apiServices";
+import Toast from "react-native-toast-message";
 
 const { height } = Dimensions.get("window");
 
@@ -12,7 +14,7 @@ const signup = () => {
     fullName: "",
     email: "",
     password: "",
-    confirmPassword: "",
+    // confirmPassword: "",
   });
 
   const [isInputActiveName, setIsInputActiveName] = useState(false);
@@ -22,6 +24,43 @@ const signup = () => {
     useState(false);
 
   const [isLoading, setIsLoading] = useState(false);
+
+  const handleSignUp = async () => {
+    setIsLoading(true);
+    try {
+      const response = await myAxios.post("auth/signup", form);
+      console.log(response.data);
+      Toast.show({
+        type: "success",
+        text1: "Account created successfully",
+      });
+    } catch (error: any) {
+      console.log("Error:", error);
+
+      // Проверяем, есть ли ответ от сервера с деталями ошибки
+      if (error.response) {
+        console.log("Response error data:", error.response.data);
+        Toast.show({
+          type: "error",
+          text1: error.response.data.message || "An error occurred",
+        });
+      } else if (error.request) {
+        console.log("No response received:", error.request);
+        Toast.show({
+          type: "error",
+          text1: "No response from server",
+        });
+      } else {
+        console.log("Error message:", error.message);
+        Toast.show({
+          type: "error",
+          text1: "Request failed: " + error.message,
+        });
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <SafeAreaView style={{ backgroundColor: "#0F2637", height: "100%" }}>
@@ -121,7 +160,7 @@ const signup = () => {
               }}
               placeholder="Enter your password..."
             />
-            <FormField
+            {/* <FormField
               title="Confirm Password*"
               value={form.confirmPassword}
               handleChange={(e: any) => {
@@ -137,14 +176,15 @@ const signup = () => {
                   : "#6E8597",
               }}
               placeholder="Re-enter your password..."
-            />
+            /> */}
           </View>
 
           <CustomButton
             title={"Sign Up"}
-            handlePress={() => {
-              router.push("/signin");
-            }}
+            handlePress={handleSignUp}
+            // handlePress={() => {
+            //   router.push("/signin");
+            // }}
             containerStyles={{
               paddingHorizontal: 20,
               paddingVertical: 20,
