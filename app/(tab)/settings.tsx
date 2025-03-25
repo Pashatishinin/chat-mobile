@@ -6,7 +6,7 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Profile from "@/components/Profile";
 import styleProfile from "@/styles/profile.styles";
 import ProfileEdit from "@/components/ProfileEdit";
@@ -15,10 +15,34 @@ import NavigateButton from "@/components/profile-settings/NavigateButton";
 import { router } from "expo-router";
 import SettingSwitcher from "@/components/profile-settings/SettingSwitcher.tsx";
 import LogOut from "@/components/profile-settings/LogOut";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+interface User {
+  fullName: string;
+  email: string;
+  profilePic: string;
+}
 
 const profile = require("@/assets/avatar.jpg");
 
 const settings = () => {
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const loadUserData = async () => {
+      try {
+        const userData = await AsyncStorage.getItem("user");
+        if (userData) {
+          setUser(JSON.parse(userData)); // Парсим объект
+        }
+      } catch (error) {
+        console.error("Ошибка загрузки пользователя:", error);
+      }
+    };
+
+    loadUserData();
+  }, []);
+
   return (
     <SafeAreaView
       style={{
@@ -101,7 +125,7 @@ const settings = () => {
                       fontWeight: 600,
                     }}
                   >
-                    Peter Parker
+                    {user ? user.fullName : "Loading..."}
                   </Text>
                   <Text
                     style={{
@@ -111,7 +135,7 @@ const settings = () => {
                       marginBottom: 1,
                     }}
                   >
-                    @peterparker
+                    {user ? user.email : "Loading..."}
                   </Text>
                 </View>
               </View>

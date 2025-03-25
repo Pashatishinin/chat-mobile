@@ -99,7 +99,10 @@ const addEmail = () => {
             <CustomButton
               title={"Next"}
               handlePress={() => {
-                router.push("/verify-otp");
+                router.push({
+                  pathname: "/verify-otp",
+                  params: { email: form.email },
+                });
               }}
               containerStyles={{
                 width: "100%",

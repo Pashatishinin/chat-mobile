@@ -1,10 +1,4 @@
-import {
-  View,
-  Text,
-  SafeAreaView,
-  Image,
-  Dimensions,
-} from "react-native";
+import { View, Text, SafeAreaView, Image, Dimensions } from "react-native";
 import React, { useState } from "react";
 import logo from "@/assets/logo2.png";
 import FormField from "@/components/FormField";
@@ -22,8 +16,6 @@ const signin = () => {
   const [isInputActivePassword, setIsInputActivePassword] = useState(false);
 
   const [isLoading, setIsLoading] = useState(false);
-
-  
 
   return (
     <SafeAreaView style={{ backgroundColor: "#0F2637", height: "100%" }}>

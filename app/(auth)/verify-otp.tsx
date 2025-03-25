@@ -5,13 +5,18 @@ import {
   ScrollView,
   KeyboardAvoidingView,
   Platform,
+  Alert,
 } from "react-native";
 import React, { useState } from "react";
-import { router } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import CustomButton from "@/components/CustomButton";
 import { OtpInput } from "react-native-otp-entry";
 
+const correctCode = "1111";
+
 const verifyOtp = () => {
+  const { email } = useLocalSearchParams();
+
   const [form, setForm] = useState({
     code: "",
   });
@@ -19,12 +24,27 @@ const verifyOtp = () => {
   const [isInputActive, setIsInputActive] = useState(false);
 
   const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false); // Состояние для ошибки
+  const [errorMessage, setErrorMessage] = useState(""); // Сообщение об ошибке
 
   const handleOtpChange = (text: string) => {
     setForm({ code: text });
 
     // If 4 input are entered button is active
     setIsInputActive(text.length === 4);
+  };
+
+  const handleVerifyCode = () => {
+    if (form.code === correctCode) {
+      // Если код правильный, продолжаем выполнение
+      setIsError(false);
+      router.push({ pathname: "/fullname", params: { email } });
+    } else {
+      // Если код неверный, показываем ошибку
+      setIsError(true);
+      setErrorMessage("Неверный код. Попробуйте снова.");
+      Alert.alert("Ошибка", "Неверный код, попробуйте еще раз.");
+    }
   };
 
   return (
@@ -71,7 +91,7 @@ const verifyOtp = () => {
                   fontWeight: 400,
                 }}
               >
-                Enter the code number we sent to your email
+                Enter the code we sent to {email}
               </Text>
             </View>
 
@@ -109,9 +129,7 @@ const verifyOtp = () => {
           >
             <CustomButton
               title={"Next"}
-              handlePress={() => {
-                router.push("/fullname");
-              }}
+              handlePress={handleVerifyCode}
               containerStyles={{
                 width: "100%",
                 alignItems: "center",
