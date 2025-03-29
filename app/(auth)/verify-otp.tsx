@@ -42,8 +42,8 @@ const verifyOtp = () => {
     } else {
       // Если код неверный, показываем ошибку
       setIsError(true);
-      setErrorMessage("Неверный код. Попробуйте снова.");
-      Alert.alert("Ошибка", "Неверный код, попробуйте еще раз.");
+      setErrorMessage("Wrong code. Try again.");
+      Alert.alert("Error", "Wrong code, try again");
     }
   };
 

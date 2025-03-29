@@ -7,24 +7,30 @@ import {
   ScrollView,
   Dimensions,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { Ionicons } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
 import FormField from "@/components/FormField";
 import CustomButton from "@/components/CustomButton";
 import { router } from "expo-router";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const profile = require("@/assets/avatar.jpg");
 const { height } = Dimensions.get("window");
+interface User {
+  fullName: string;
+  email: string;
+}
 
 const ProfileEdit = () => {
+  const [user, setUser] = useState<User | null>(null);
   const [isInputActiveName, setIsInputActiveName] = useState(false);
   const [isInputActiveEmail, setIsInputActiveEmail] = useState(false);
 
   const [form, setForm] = useState({
-    fullName: "Peter Parker",
-    email: "peterparker1@gmail.com",
+    fullName: "",
+    email: "",
   });
 
   const [ImageSelected, setImageSelected] =
@@ -50,6 +56,46 @@ const ProfileEdit = () => {
 
     if (!result.canceled) {
       setImageSelected(result.assets[0]);
+    }
+  };
+
+  useEffect(() => {
+    const loadUserData = async () => {
+      try {
+        const userData = await AsyncStorage.getItem("user");
+        if (userData) {
+          const parsedUser = JSON.parse(userData);
+          setUser(parsedUser); // Устанавливаем пользователя
+          setForm({
+            fullName: parsedUser.fullName || "",
+            email: parsedUser.email || "",
+          });
+        }
+      } catch (error) {
+        console.error("Ошибка загрузки пользователя:", error);
+      }
+    };
+
+    loadUserData();
+  }, []);
+
+  // Сохранение данных
+  const handleSave = async () => {
+    try {
+      const updatedUser = {
+        ...form,
+      };
+      await AsyncStorage.setItem("user", JSON.stringify(updatedUser));
+
+      if (setUser) {
+        setUser(updatedUser); // Обновление состояния в контексте
+      }
+
+      Alert.alert("Success", "Profile updated successfully!");
+      router.push("/settings");
+    } catch (error) {
+      console.error("Ошибка сохранения данных:", error);
+      Alert.alert("Error", "Failed to save profile.");
     }
   };
 
@@ -178,9 +224,7 @@ const ProfileEdit = () => {
 
           <CustomButton
             title="Save"
-            handlePress={() => {
-              router.push("/settings");
-            }}
+            handlePress={handleSave}
             containerStyles={{
               paddingHorizontal: 20,
               paddingVertical: 20,
