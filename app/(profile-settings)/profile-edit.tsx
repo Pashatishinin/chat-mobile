@@ -16,11 +16,13 @@ import CustomButton from "@/components/CustomButton";
 import { router } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+
 const profile = require("@/assets/avatar.jpg");
 const { height } = Dimensions.get("window");
 interface User {
   fullName: string;
   email: string;
+  profilePic: string;
 }
 
 const ProfileEdit = () => {
@@ -31,16 +33,34 @@ const ProfileEdit = () => {
   const [form, setForm] = useState({
     fullName: "",
     email: "",
+    profilePic: "",
   });
 
   const [ImageSelected, setImageSelected] =
     useState<ImagePicker.ImagePickerAsset | null>(null);
 
+  useEffect(() => {
+    const loadUserData = async () => {
+      try {
+        const userData = await AsyncStorage.getItem("user");
+        if (userData) {
+          const parsedUser = JSON.parse(userData);
+          setUser(parsedUser); // Устанавливаем пользователя
+          setForm(parsedUser);
+        }
+      } catch (error) {
+        console.error("Ошибка загрузки пользователя:", error);
+      }
+    };
+
+    loadUserData();
+  }, []);
+
   const pickImage = async () => {
     let permissionResult =
       await ImagePicker.requestMediaLibraryPermissionsAsync();
 
-    if (permissionResult.granted == false) {
+    if (!permissionResult.granted) {
       Alert.alert(
         "Permission Denied",
         "You need to grant permission to access your photos."
@@ -59,31 +79,13 @@ const ProfileEdit = () => {
     }
   };
 
-  useEffect(() => {
-    const loadUserData = async () => {
-      try {
-        const userData = await AsyncStorage.getItem("user");
-        if (userData) {
-          const parsedUser = JSON.parse(userData);
-          setUser(parsedUser); // Устанавливаем пользователя
-          setForm({
-            fullName: parsedUser.fullName || "",
-            email: parsedUser.email || "",
-          });
-        }
-      } catch (error) {
-        console.error("Ошибка загрузки пользователя:", error);
-      }
-    };
-
-    loadUserData();
-  }, []);
-
   // Сохранение данных
   const handleSave = async () => {
     try {
+      
+
       const updatedUser = {
-        ...form,
+        ...form
       };
       await AsyncStorage.setItem("user", JSON.stringify(updatedUser));
 
@@ -143,7 +145,13 @@ const ProfileEdit = () => {
         >
           <View style={{ position: "relative" }}>
             <Image
-              source={ImageSelected ? { uri: ImageSelected.uri } : profile}
+              source={
+                ImageSelected
+                  ? { uri: ImageSelected.uri }
+                  : form.profilePic
+                  ? { uri: form.profilePic }
+                  : profile
+              }
               style={{
                 width: 160,
                 height: 160,

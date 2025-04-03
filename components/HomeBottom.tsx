@@ -1,7 +1,7 @@
 import { View, Text } from "react-native";
 import React from "react";
 import CustomButton from "./CustomButton";
-import { router } from "expo-router";
+import { Link, router } from "expo-router";
 
 const HomeBottom = () => {
   return (
@@ -40,7 +40,21 @@ const HomeBottom = () => {
         >
           Lastivka is messaging app that will help you to connect with everyone
         </Text>
+        <Text
+          style={{
+            textAlign: "center",
+            fontSize: 14,
+            color: "#6E8597",
+            fontWeight: 400,
+          }}
+        >
+          Already have an account?{" "}
+          <Link style={{ color: "#57B77D", fontWeight: 700 }} href={"/signin"}>
+            Sign In
+          </Link>
+        </Text>
       </View>
+
       <CustomButton
         title={"Get Started"}
         handlePress={() => {

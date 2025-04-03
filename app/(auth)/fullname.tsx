@@ -16,17 +16,17 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 interface User {
   _id: string;
-  fullName: string;
+  name: string;
   email: string;
-  profilePic: string;
+  // profilePic: string;
 }
 
 const fullname = () => {
-  const { email } = useLocalSearchParams();
+  const { email, password } = useLocalSearchParams();
   const [form, setForm] = useState({
-    fullName: "",
+    name: "",
     email: email,
-    password: "",
+    password: "123456",
   });
 
   const [isInputActive, setIsInputActive] = useState(false);
@@ -34,7 +34,8 @@ const fullname = () => {
   const [isLoading, setIsLoading] = useState(false);
   const storeUserData = async (user: User) => {
     try {
-      await AsyncStorage.setItem("user", JSON.stringify(user)); // Сохраняем данные пользователя
+      await AsyncStorage.setItem("user", JSON.stringify(user)); 
+      console.log("User data saved:", user);// Сохраняем данные пользователя
     } catch (error) {
       console.error("Ошибка сохранения пользователя:", error);
     }
@@ -45,16 +46,18 @@ const fullname = () => {
 
     setIsLoading(true);
     try {
-      const response = await myAxios.post("auth/signup", form);
+      const response = await myAxios.post("/auth/register", form);
       console.log(response.data);
 
       // Сохраняем полученные данные пользователя в AsyncStorage
       const userData = {
-        _id: response.data._id,
-        fullName: response.data.fullName,
-        email: response.data.email,
-        profilePic: response.data.profilePic,
+        _id: response.data.user._id,
+        name: response.data.user.name,
+        email: response.data.user.email,
+        // profilePic: response.data.profilePic,
       };
+
+      console.log("User data to be saved:", userData);
 
       await storeUserData(userData); // Сохраняем данные пользователя
       console.log(response.data);
@@ -150,11 +153,11 @@ const fullname = () => {
                 icon_color={isInputActive ? "#57B77D" : "#6E8597"}
                 title="Name"
                 icon="person"
-                value={form.fullName}
+                value={form.name}
                 handleChange={(e: any) => {
                   setForm({
                     ...form,
-                    fullName: e,
+                    name: e,
                   });
                   setIsInputActive(e.length > 0);
                 }}

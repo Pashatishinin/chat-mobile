@@ -38,7 +38,7 @@ const verifyOtp = () => {
     if (form.code === correctCode) {
       // Если код правильный, продолжаем выполнение
       setIsError(false);
-      router.push({ pathname: "/fullname", params: { email } });
+      router.push({ pathname: "/fullname", params: { email, password:form.code } });
     } else {
       // Если код неверный, показываем ошибку
       setIsError(true);

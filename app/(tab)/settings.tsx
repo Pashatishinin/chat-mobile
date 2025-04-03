@@ -18,9 +18,9 @@ import LogOut from "@/components/profile-settings/LogOut";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 interface User {
-  fullName: string;
+  name: string;
   email: string;
-  profilePic: string;
+  // profilePic: string;
 }
 
 const profile = require("@/assets/avatar.jpg");
@@ -33,6 +33,7 @@ const settings = () => {
       try {
         const userData = await AsyncStorage.getItem("user");
         if (userData) {
+          console.log("Loaded user data:", userData); // Для отладки
           setUser(JSON.parse(userData)); // Парсим объект
         }
       } catch (error) {
@@ -125,7 +126,7 @@ const settings = () => {
                       fontWeight: 600,
                     }}
                   >
-                    {user ? user.fullName : "Loading..."}
+                    {user ? user.name : "Loading..."}
                   </Text>
                   <Text
                     style={{

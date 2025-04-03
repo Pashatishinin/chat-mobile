@@ -5,6 +5,7 @@ import {
   ScrollView,
   KeyboardAvoidingView,
   Platform,
+  Alert,
 } from "react-native";
 import React, { useState } from "react";
 import { router } from "expo-router";
@@ -19,6 +20,43 @@ const addEmail = () => {
   const [isInputActive, setIsInputActive] = useState(false);
 
   const [isLoading, setIsLoading] = useState(false);
+
+  const [emailError, setEmailError] = useState<string | null>(null);
+
+  // Регулярное выражение для проверки email
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  const handleEmailChange = (e: string) => {
+    setForm({
+      ...form,
+      email: e,
+    });
+
+    setIsInputActive(e.length > 0);
+
+    // Проверка на корректность email
+    if (e.length > 0 && !emailRegex.test(e)) {
+      setEmailError("Please enter a valid email address.");
+    } else {
+      setEmailError(null); // Сброс ошибки, если email корректен
+    }
+  };
+
+  const handleNextPress = () => {
+    // Если есть ошибка, не отправляем форму
+    if (!emailRegex.test(form.email)) {
+      setEmailError("Please enter a valid email address.");
+      Alert.alert("Помилка", "Невірна електронна адреса.");
+      return;
+    }
+
+    setEmailError(null);
+
+    router.push({
+      pathname: "/verify-otp",
+      params: { email: form.email },
+    });
+  };
 
   return (
     <SafeAreaView
@@ -76,13 +114,7 @@ const addEmail = () => {
               <FormField
                 title="Email"
                 value={form.email}
-                handleChange={(e: any) => {
-                  setForm({
-                    ...form,
-                    email: e,
-                  });
-                  setIsInputActive(e.length > 0);
-                }}
+                handleChange={handleEmailChange}
                 otherStyles={{
                   borderColor: isInputActive ? "#57B77D" : "#6E8597",
                 }}
@@ -98,12 +130,7 @@ const addEmail = () => {
           >
             <CustomButton
               title={"Next"}
-              handlePress={() => {
-                router.push({
-                  pathname: "/verify-otp",
-                  params: { email: form.email },
-                });
-              }}
+              handlePress={handleNextPress}
               containerStyles={{
                 width: "100%",
                 alignItems: "center",

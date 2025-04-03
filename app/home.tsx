@@ -2,6 +2,7 @@ import { Text, View, SafeAreaView, ScrollView, Image } from "react-native";
 import React from "react";
 import logo from "@/assets/logo2.png";
 import HomeBottom from "@/components/HomeBottom";
+import { Link } from "expo-router";
 
 const home = () => {
   return (
@@ -42,7 +43,9 @@ const home = () => {
             Lastivka
           </Text>
         </View>
+        
         <HomeBottom />
+        
       </ScrollView>
     </SafeAreaView>
   );
